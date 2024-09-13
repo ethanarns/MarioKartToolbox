@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Buffers;
 using System.Buffers.Binary;
-using System.Linq;
 
 namespace HaroohiePals.IO.Compression;
 
