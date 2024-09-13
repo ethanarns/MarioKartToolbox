@@ -30,7 +30,7 @@ public sealed class Yaz0CompressionAlgorithm : ICompressionAlgorithm
     }
 
     /// <inheritdoc cref="ICompressionAlgorithm.Compress(ReadOnlySpan{byte})"/>
-    public ReadOnlySpan<byte> Compress(ReadOnlySpan<byte> sourceData)
+    public byte[] Compress(ReadOnlySpan<byte> sourceData)
     {
         var window = new CompressionWindow(sourceData, MINIMUM_RUN_LENGTH, MAXIMUM_RUN_LENGTH);
         var destination = new ArrayBufferWriter<byte>(sourceData.Length);
@@ -120,7 +120,7 @@ public sealed class Yaz0CompressionAlgorithm : ICompressionAlgorithm
         blockBuffer[0] = (byte)(blockHeader << bit);
         destination.Advance(blockSize);
 
-        return destination.WrittenSpan;
+        return destination.WrittenSpan.ToArray();
     }
 
     /// <inheritdoc cref="ICompressionAlgorithm.Decompress(ReadOnlySpan{byte})"/>

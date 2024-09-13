@@ -32,10 +32,10 @@ public class MkdsCarcCourse : MkdsBinaryCourse
         if (result)
         {
             var lz77 = new Lz77CompressionAlgorithm();
-            File.WriteAllBytes(MainPath, lz77.Compress(new Narc(_mainArchive).Write()).ToArray());
+            File.WriteAllBytes(MainPath, lz77.Compress(new Narc(_mainArchive).Write()));
             if (TexPath != null)
             {
-                File.WriteAllBytes(TexPath, lz77.Compress(new Narc(_texArchive).Write()).ToArray());
+                File.WriteAllBytes(TexPath, lz77.Compress(new Narc(_texArchive).Write()));
             }
         }
 

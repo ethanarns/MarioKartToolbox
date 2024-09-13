@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Buffers.Binary;
+using System.Linq;
 
 namespace HaroohiePals.IO.Compression;
 
@@ -29,7 +30,7 @@ public sealed class Lz77CompressionAlgorithm : ICompressionAlgorithm
     }
 
     /// <inheritdoc cref="ICompressionAlgorithm.Compress(ReadOnlySpan{byte})"/>
-    public ReadOnlySpan<byte> Compress(ReadOnlySpan<byte> sourceData)
+    public byte[] Compress(ReadOnlySpan<byte> sourceData)
     {
         var window = new CompressionWindow(sourceData, MINIMUM_RUN_LENGTH, MAXIMUM_RUN_LENGTH);
         var destination = new ArrayBufferWriter<byte>(sourceData.Length);
@@ -106,7 +107,7 @@ public sealed class Lz77CompressionAlgorithm : ICompressionAlgorithm
         blockBuffer[0] = (byte)(blockHeader << bit);
         destination.Advance(blockSize);
 
-        return destination.WrittenSpan;
+        return destination.WrittenSpan.ToArray();
     }
 
     /// <inheritdoc cref="ICompressionAlgorithm.Decompress(ReadOnlySpan{byte})"/>

@@ -11,8 +11,8 @@ public interface ICompressionAlgorithm
     /// Compresses the given <paramref name="sourceData"/>.
     /// </summary>
     /// <param name="sourceData">A span containing the source data.</param>
-    /// <returns>A span containing the compressed data.</returns>
-    ReadOnlySpan<byte> Compress(ReadOnlySpan<byte> sourceData);
+    /// <returns>A byte array containing the compressed data.</returns>
+    byte[] Compress(ReadOnlySpan<byte> sourceData);
 
     /// <summary>
     /// Decompresses the given <paramref name="compressedData"/>.

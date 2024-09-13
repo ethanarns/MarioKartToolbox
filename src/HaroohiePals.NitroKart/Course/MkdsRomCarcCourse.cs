@@ -35,10 +35,10 @@ public class MkdsRomCarcCourse : MkdsBinaryCourse
         if (result)
         {
             var lz77 = new Lz77CompressionAlgorithm();
-            _romFs.SetFileData(MainPath, lz77.Compress(new Narc(_mainArchive).Write()).ToArray());
+            _romFs.SetFileData(MainPath, lz77.Compress(new Narc(_mainArchive).Write()));
             if (TexPath != null)
             {
-                _romFs.SetFileData(TexPath, lz77.Compress(new Narc(_texArchive).Write()).ToArray());
+                _romFs.SetFileData(TexPath, lz77.Compress(new Narc(_texArchive).Write()));
             }
         }
 
